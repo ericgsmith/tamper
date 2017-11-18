@@ -1,0 +1,5 @@
+name: Tamper
+description: Generic plugin to modify data.
+package : Other
+type: module
+core: 8.x
