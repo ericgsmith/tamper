@@ -5,7 +5,7 @@ namespace Drupal\Tests\tamper\Unit\Plugin\Tamper;
 use Drupal\tamper\Plugin\Tamper\ArrayFilter;
 use Drupal\Tests\UnitTestCase;
 
-class ExplodeTest extends UnitTestCase {
+class ArrayFilterTest extends UnitTestCase {
 
   public function testArrayFilter() {
     $config = [];
