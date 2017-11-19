@@ -5,6 +5,9 @@ namespace Drupal\tamper;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Plugin\PluginBase;
 
+/**
+ * Provides a base class to tamper data from.
+ */
 abstract class TamperBase extends PluginBase implements TamperInterface {
 
   /**
@@ -13,6 +16,20 @@ abstract class TamperBase extends PluginBase implements TamperInterface {
   public function __construct(array $configuration, $plugin_id, $plugin_definition) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->setConfiguration($configuration);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function tamper($data) {
+    return is_array($data) ? $this->tamperMultipleValues($data) : $this->tamperSingleValue($data);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function tamperMultipleValues($data) {
+    return array_map([$this, 'tamperSingleValue'], $data);
   }
 
   /**

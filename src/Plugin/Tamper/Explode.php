@@ -34,8 +34,6 @@ class Explode extends TamperBase {
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    $form = parent::settingsForm($form, $form_state);
-
     $form[self::SETTING_SEPARATOR] = array(
       '#type' => 'textfield',
       '#title' => $this->t('String separator'),
@@ -65,7 +63,7 @@ class Explode extends TamperBase {
    * {@inheritdoc}
    */
   public function settingsSummary() {
-    $summary = parent::settingsSummary();
+    $summary = [];
     if ($this->getSetting(self::SETTING_SEPARATOR)) {
       $summary[] = $this->t('Separating data using @separator', ['@separator' => $this->getSetting(self::SETTING_SEPARATOR)]);
     }
@@ -78,7 +76,7 @@ class Explode extends TamperBase {
   /**
    * {@inheritdoc}
    */
-  public function tamper($data) {
+  public function tamperSingleValue($data) {
     $separator = str_replace(array('%s', '%t', '%n'), array(' ', "\t", "\n"), $this->getSetting(self::SETTING_SEPARATOR));
     $limit = is_numeric($this->getSetting(self::SETTING_LIMIT)) ? $this->getSetting(self::SETTING_LIMIT) : PHP_INT_MAX;
     return explode($separator, $data, $limit);
