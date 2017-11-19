@@ -2,6 +2,7 @@
 
 namespace Drupal\tamper;
 
+use Drupal\Component\Plugin\CategorizingPluginManagerInterface;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Plugin\DefaultPluginManager;
@@ -9,7 +10,7 @@ use Drupal\Core\Plugin\DefaultPluginManager;
 /**
  * Provides a Tamper plugin manager.
  */
-class TamperManager extends DefaultPluginManager {
+class TamperManager extends DefaultPluginManager implements CategorizingPluginManagerInterface {
 
   /**
    * Constructs a TamperManager object.
@@ -33,4 +34,46 @@ class TamperManager extends DefaultPluginManager {
     $this->alterInfo('tamper_info');
     $this->setCacheBackend($cache_backend, 'tamper_info_plugins');
   }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCategories() {
+    // Fetch all categories from definitions and remove duplicates.
+    $categories = array_unique(array_values(array_map(function ($definition) {
+      return $definition['category'];
+    }, $this->getDefinitions())));
+    natcasesort($categories);
+    return $categories;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getGroupedDefinitions(array $definitions = NULL) {
+    $definitions = $this->getSortedDefinitions(isset($definitions) ? $definitions : $this->getDefinitions());
+    $grouped_definitions = [];
+    foreach ($definitions as $id => $definition) {
+      $grouped_definitions[(string) $definition['category']][$id] = $definition;
+    }
+    return $grouped_definitions;
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @return \Drupal\tamper\TamperInterface[]
+   */
+  public function getSortedDefinitions(array $definitions = NULL) {
+    // Sort the plugins first by category, then by label.
+    $definitions = isset($definitions) ? $definitions : $this->getDefinitions();
+    uasort($definitions, function ($a, $b) {
+      if ($a['category'] != $b['category']) {
+        return strnatcasecmp($a['category'], $b['category']);
+      }
+      return strnatcasecmp($a['label'], $b['label']);
+    });
+    return $definitions;
+  }
+
 }
