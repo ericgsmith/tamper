@@ -6,7 +6,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\tamper\TamperBase;
 
 /**
- * Plugin implementation of the 'string' formatter.
+ * Plugin implementation of the explode plugin.
  *
  * @Tamper(
  *   id = "explode",
