@@ -34,7 +34,7 @@ class Explode extends TamperBase {
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    $form[self::SETTING_SEPARATOR] = array(
+    $form[self::SETTING_SEPARATOR] = [
       '#type' => 'textfield',
       '#title' => $this->t('String separator'),
       '#default_value' => $this->getSetting(self::SETTING_SEPARATOR),
@@ -42,9 +42,9 @@ class Explode extends TamperBase {
       array. For example, "a, b, c" would get broken up into the array(\'a\',
       \'b\', \'c\'). A space can be represented by %s, tabs by %t, and newlines
       by %n.'),
-    );
+    ];
 
-    $form[self::SETTING_LIMIT] = array(
+    $form[self::SETTING_LIMIT] = [
       '#type' => 'number',
       '#title' => $this->t('Limit'),
       '#default_value' => $this->getSetting(self::SETTING_LIMIT),
@@ -54,7 +54,7 @@ class Explode extends TamperBase {
         -limit are returned. If the limit parameter is zero, then this is
         treated as 1. If limit is not set, then there will be no limit on the
         number of items returned.'),
-    );
+    ];
 
     return $form;
   }
@@ -77,7 +77,7 @@ class Explode extends TamperBase {
    * {@inheritdoc}
    */
   public function tamperSingleValue($data) {
-    $separator = str_replace(array('%s', '%t', '%n'), array(' ', "\t", "\n"), $this->getSetting(self::SETTING_SEPARATOR));
+    $separator = str_replace(['%s', '%t', '%n'], [' ', "\t", "\n"], $this->getSetting(self::SETTING_SEPARATOR));
     $limit = is_numeric($this->getSetting(self::SETTING_LIMIT)) ? $this->getSetting(self::SETTING_LIMIT) : PHP_INT_MAX;
     return explode($separator, $data, $limit);
   }
