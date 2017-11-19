@@ -41,8 +41,6 @@ interface TamperInterface extends ConfigurablePluginInterface {
    *
    * Performs the operations on the data to transform it.
    *
-   * @todo: Can we avoid generic param and return types?
-   *
    * @param mixed $data
    *   The data to tamper.
    *
@@ -50,4 +48,5 @@ interface TamperInterface extends ConfigurablePluginInterface {
    *   The tampered data.
    */
   public function tamper($data);
+
 }
