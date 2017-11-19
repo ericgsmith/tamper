@@ -49,29 +49,4 @@ interface TamperInterface extends ConfigurablePluginInterface {
    */
   public function tamper($data);
 
-  /**
-   * Tamper data.
-   *
-   * Performs the operations on a singe instance of data to transform it.
-   *
-   * @param mixed $data
-   *   The data to tamper.
-   *
-   * @return mixed
-   *   The tampered data.
-   */
-  public function tamperSingleValue($data);
-
-  /**
-   * Tamper data.
-   *
-   * Performs the operations on multiple instances of data to transform it.
-   *
-   * @param array $data
-   *   The data to tamper.
-   *
-   * @return mixed
-   *   The tampered data.
-   */
-  public function tamperMultipleValues($data);
 }

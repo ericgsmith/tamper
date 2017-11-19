@@ -26,9 +26,30 @@ abstract class TamperBase extends PluginBase implements TamperInterface {
   }
 
   /**
-   * {@inheritdoc}
+   * Tamper data.
+   *
+   * Performs the operations on a single value instance of data to transform it.
+   *
+   * @param mixed $data
+   *   The data to tamper.
+   *
+   * @return mixed
+   *   The tampered data.
    */
-  public function tamperMultipleValues($data) {
+  abstract protected function tamperSingleValue($data);
+
+  /**
+   * Tamper data.
+   *
+   * Performs the operations on multiple value data to transform it.
+   *
+   * @param array $data
+   *   The data to tamper.
+   *
+   * @return mixed
+   *   The tampered data.
+   */
+  protected function tamperMultipleValues($data) {
     return array_map([$this, 'tamperSingleValue'], $data);
   }
 
