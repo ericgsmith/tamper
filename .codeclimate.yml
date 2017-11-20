@@ -2,6 +2,6 @@ plugins:
   phpcodesniffer:
     enabled: true
     config:
-    	standard: "Drupal"
+      standard: "Drupal"
   phpmd:
     enabled: true
