@@ -47,6 +47,14 @@ class Implode extends ConfigurableTamperBase {
   /**
    * {@inheritdoc}
    */
+  public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
+    parent::submitConfigurationForm($form, $form_state);
+    $this->setConfiguration([self::SETTING_GLUE => $form_state->getValue(self::SETTING_GLUE)]);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function tamperMultipleValues(array $data) {
     $glue = str_replace(['%s', '%t', '%n'], [' ', "\t", "\n"], $this->getSetting(self::SETTING_GLUE));
     return implode($glue, $data);

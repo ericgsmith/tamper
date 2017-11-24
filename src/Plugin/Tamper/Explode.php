@@ -62,6 +62,17 @@ class Explode extends ConfigurableTamperBase {
   /**
    * {@inheritdoc}
    */
+  public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
+    parent::submitConfigurationForm($form, $form_state);
+    $this->setConfiguration([
+      self::SETTING_SEPARATOR => $form_state->getValue(self::SETTING_SEPARATOR),
+      self::SETTING_LIMIT => $form_state->getValue(self::SETTING_LIMIT),
+    ]);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function tamperSingleValue($data) {
     $separator = str_replace(['%s', '%t', '%n'], [' ', "\t", "\n"], $this->getSetting(self::SETTING_SEPARATOR));
     $limit = is_numeric($this->getSetting(self::SETTING_LIMIT)) ? $this->getSetting(self::SETTING_LIMIT) : PHP_INT_MAX;

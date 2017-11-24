@@ -44,6 +44,15 @@ class ConvertCase extends ConfigurableTamperBase {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
+    parent::submitConfigurationForm($form, $form_state);
+    $this->setConfiguration([self::SETTING_OPERATION => $form_state->getValue(self::SETTING_OPERATION)]);
+  }
+
+
+  /**
    * Get the case conversion options.
    *
    * @return array
