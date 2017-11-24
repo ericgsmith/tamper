@@ -6,12 +6,12 @@ use Drupal\tamper\Plugin\Tamper\ConvertCase;
 use Drupal\Tests\UnitTestCase;
 
 /**
- *
+ * Tests the convert case plugin.
  */
 class ConvertCaseTest extends UnitTestCase {
 
   /**
-   *
+   * Test convert to upper case.
    */
   public function testUpperCase() {
     $config = [
@@ -22,7 +22,7 @@ class ConvertCaseTest extends UnitTestCase {
   }
 
   /**
-   *
+   * Test convert to lower case.
    */
   public function testLowerCase() {
     $config = [
@@ -33,7 +33,7 @@ class ConvertCaseTest extends UnitTestCase {
   }
 
   /**
-   *
+   * Test convert to upper case first.
    */
   public function testUpperCaseFirst() {
     $config = [
@@ -44,7 +44,7 @@ class ConvertCaseTest extends UnitTestCase {
   }
 
   /**
-   *
+   * Test convert to lower case first.
    */
   public function testLowerCaseFirst() {
     $config = [
@@ -55,7 +55,7 @@ class ConvertCaseTest extends UnitTestCase {
   }
 
   /**
-   *
+   * Test convert to upper case words.
    */
   public function testUpperCaseWords() {
     $config = [

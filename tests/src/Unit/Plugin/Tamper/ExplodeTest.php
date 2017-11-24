@@ -6,12 +6,12 @@ use Drupal\tamper\Plugin\Tamper\Explode;
 use Drupal\Tests\UnitTestCase;
 
 /**
- *
+ * Tests the explode plugin.
  */
 class ExplodeTest extends UnitTestCase {
 
   /**
-   *
+   * Test explode.
    */
   public function testExplode() {
     $config = [];
@@ -20,7 +20,7 @@ class ExplodeTest extends UnitTestCase {
   }
 
   /**
-   *
+   * Text explode with limit.
    */
   public function testExplodeLimit() {
     $config = [

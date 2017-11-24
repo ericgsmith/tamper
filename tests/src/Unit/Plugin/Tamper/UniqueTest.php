@@ -6,18 +6,18 @@ use Drupal\tamper\Plugin\Tamper\Unique;
 use Drupal\Tests\UnitTestCase;
 
 /**
- *
+ * Test the unique plugin.
  */
 class UniqueTest extends UnitTestCase {
 
   /**
-   *
+   * Test unique.
    */
-  public function testImplode() {
+  public function testUnique() {
     $config = [];
     $plugin = new Unique($config, 'unique', []);
-
-    $this->assertArrayEquals(['foo', 'bar', 'baz'], $plugin->tamper(['foo', 'foo', 'bar', 'baz', 'baz']));
+    $tampered = $plugin->tamper(['foo', 'foo', 'bar', 'baz', 'baz']);
+    $this->assertArrayEquals(['foo', 'bar', 'baz'], $tampered);
   }
 
 }

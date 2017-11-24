@@ -14,8 +14,6 @@ interface TamperInterface extends PluginInspectionInterface, ConfigurablePluginI
   /**
    * Returns a form to configure settings for the tamper.
    *
-   * @todo: Invoked from *TBC*
-   *
    * @param array $form
    *   The form where the settings form is being included in.
    * @param \Drupal\Core\Form\FormStateInterface $form_state

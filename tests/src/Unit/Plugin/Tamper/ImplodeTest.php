@@ -6,12 +6,12 @@ use Drupal\tamper\Plugin\Tamper\Implode;
 use Drupal\Tests\UnitTestCase;
 
 /**
- *
+ * Test the implode plugin.
  */
 class ImplodeTest extends UnitTestCase {
 
   /**
-   *
+   * Test imploding.
    */
   public function testImplode() {
     $config = [
