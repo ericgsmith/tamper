@@ -1,7 +1,11 @@
-plugins:
+---
+engines:
+  phpmd:
+    enabled: true
+    config:
+      file_extensions: "php,inc,module,install"
   phpcodesniffer:
     enabled: true
     config:
       standard: "Drupal"
-  phpmd:
-    enabled: true
+      ignore_warnings: true

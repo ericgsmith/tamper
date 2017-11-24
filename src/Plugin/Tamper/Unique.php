@@ -40,7 +40,7 @@ class Unique extends TamperBase {
   /**
    * {@inheritdoc}
    */
-  public function tamperMultipleValues($data) {
+  public function tamperMultipleValues(array $data) {
     return array_values(array_unique($data));
   }
 

@@ -29,7 +29,6 @@ class ConvertCase extends TamperBase {
     return $config;
   }
 
-
   /**
    * {@inheritdoc}
    */
@@ -53,6 +52,7 @@ class ConvertCase extends TamperBase {
       $options = $this->getOptions();
       $settings[] = $this->t('Converting case using operation: @operation', ['@operation' => $options[$this->getSetting(self::SETTING_OPERATION)]]);
     }
+    return $settings;
   }
 
   /**

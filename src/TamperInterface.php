@@ -3,17 +3,16 @@
 namespace Drupal\tamper;
 
 use Drupal\Component\Plugin\ConfigurablePluginInterface;
+use Drupal\Component\Plugin\PluginInspectionInterface;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Interface definition for tamper plugins.
  */
-interface TamperInterface extends ConfigurablePluginInterface {
+interface TamperInterface extends PluginInspectionInterface, ConfigurablePluginInterface {
 
   /**
    * Returns a form to configure settings for the tamper.
-   *
-   * @todo: Invoked from *TBC*
    *
    * @param array $form
    *   The form where the settings form is being included in.

@@ -49,7 +49,7 @@ abstract class TamperBase extends PluginBase implements TamperInterface {
    * @return mixed
    *   The tampered data.
    */
-  protected function tamperMultipleValues($data) {
+  protected function tamperMultipleValues(array $data) {
     return array_map([$this, 'tamperSingleValue'], $data);
   }
 
@@ -67,6 +67,7 @@ abstract class TamperBase extends PluginBase implements TamperInterface {
    *   Key of the configuration.
    *
    * @return mixed
+   *   Setting value.
    */
   public function getSetting($key) {
     return $this->configuration[$key];

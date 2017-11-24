@@ -63,6 +63,7 @@ class TamperManager extends DefaultPluginManager implements CategorizingPluginMa
    * {@inheritdoc}
    *
    * @return \Drupal\tamper\TamperInterface[]
+   *   List of tamper plugins.
    */
   public function getSortedDefinitions(array $definitions = NULL) {
     // Sort the plugins first by category, then by label.
