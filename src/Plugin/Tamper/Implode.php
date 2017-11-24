@@ -3,7 +3,7 @@
 namespace Drupal\tamper\Plugin\Tamper;
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\tamper\TamperBase;
+use Drupal\tamper\ConfigurableTamperBase;
 
 /**
  * Plugin implementation of the explode plugin.
@@ -15,7 +15,7 @@ use Drupal\tamper\TamperBase;
  *   category = "List"
  * )
  */
-class Implode extends TamperBase {
+class Implode extends ConfigurableTamperBase {
 
   const SETTING_GLUE = 'glue';
 
@@ -31,7 +31,7 @@ class Implode extends TamperBase {
   /**
    * {@inheritdoc}
    */
-  public function settingsForm(array $form, FormStateInterface $form_state) {
+  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
     $form[self::SETTING_GLUE] = [
       '#type' => 'textfield',
       '#title' => $this->t('String glue'),
@@ -42,17 +42,6 @@ class Implode extends TamperBase {
     ];
 
     return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function settingsSummary() {
-    $summary = [];
-    if ($this->getSetting(self::SETTING_GLUE)) {
-      $summary[] = $this->t('Joining data using @glue', ['@glue' => $this->getSetting(self::SETTING_GLUE)]);
-    }
-    return $summary;
   }
 
   /**

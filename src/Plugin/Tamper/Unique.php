@@ -2,7 +2,6 @@
 
 namespace Drupal\tamper\Plugin\Tamper;
 
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\tamper\TamperBase;
 
 /**
@@ -16,26 +15,6 @@ use Drupal\tamper\TamperBase;
  * )
  */
 class Unique extends TamperBase {
-
-  /**
-   * {@inheritdoc}
-   */
-  public function settingsForm(array $form, FormStateInterface $form_state) {
-    return $form;
-  }
-
-  /**
-   * Returns a short summary for the current tamper settings.
-   *
-   * If an empty result is returned, a UI can still be provided to display
-   * a settings form in case the tamper has configurable settings.
-   *
-   * @return string[]
-   *   A short summary of the tamper settings.
-   */
-  public function settingsSummary() {
-    return [];
-  }
 
   /**
    * {@inheritdoc}

@@ -3,7 +3,7 @@
 namespace Drupal\tamper\Plugin\Tamper;
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\tamper\TamperBase;
+use Drupal\tamper\ConfigurableTamperBase;
 
 /**
  * Plugin implementation of the explode plugin.
@@ -15,7 +15,7 @@ use Drupal\tamper\TamperBase;
  *   category = "List"
  * )
  */
-class Explode extends TamperBase {
+class Explode extends ConfigurableTamperBase {
 
   const SETTING_SEPARATOR = 'separator';
   const SETTING_LIMIT = 'limit';
@@ -33,7 +33,7 @@ class Explode extends TamperBase {
   /**
    * {@inheritdoc}
    */
-  public function settingsForm(array $form, FormStateInterface $form_state) {
+  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
     $form[self::SETTING_SEPARATOR] = [
       '#type' => 'textfield',
       '#title' => $this->t('String separator'),
@@ -57,20 +57,6 @@ class Explode extends TamperBase {
     ];
 
     return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function settingsSummary() {
-    $summary = [];
-    if ($this->getSetting(self::SETTING_SEPARATOR)) {
-      $summary[] = $this->t('Separating data using @separator', ['@separator' => $this->getSetting(self::SETTING_SEPARATOR)]);
-    }
-    if ($this->getSetting(self::SETTING_LIMIT)) {
-      $summary[] = $this->t('Limit: @limit', ['@limit' => $this->getSetting(self::SETTING_LIMIT)]);
-    }
-    return $summary;
   }
 
   /**
