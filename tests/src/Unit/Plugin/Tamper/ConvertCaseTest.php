@@ -5,8 +5,14 @@ namespace Drupal\Tests\tamper\Unit\Plugin\Tamper;
 use Drupal\tamper\Plugin\Tamper\ConvertCase;
 use Drupal\Tests\UnitTestCase;
 
+/**
+ *
+ */
 class ConvertCaseTest extends UnitTestCase {
 
+  /**
+   *
+   */
   public function testUpperCase() {
     $config = [
       ConvertCase::SETTING_OPERATION => 'strtoupper',
@@ -15,6 +21,9 @@ class ConvertCaseTest extends UnitTestCase {
     $this->assertEquals('FOO BAR', $plugin->tamper('foo bar'));
   }
 
+  /**
+   *
+   */
   public function testLowerCase() {
     $config = [
       ConvertCase::SETTING_OPERATION => 'strtolower',
@@ -23,6 +32,9 @@ class ConvertCaseTest extends UnitTestCase {
     $this->assertEquals('foo bar', $plugin->tamper('fOo BAR'));
   }
 
+  /**
+   *
+   */
   public function testUpperCaseFirst() {
     $config = [
       ConvertCase::SETTING_OPERATION => 'ucfirst',
@@ -31,6 +43,9 @@ class ConvertCaseTest extends UnitTestCase {
     $this->assertEquals('Foo bar', $plugin->tamper('foo bar'));
   }
 
+  /**
+   *
+   */
   public function testLowerCaseFirst() {
     $config = [
       ConvertCase::SETTING_OPERATION => 'lcfirst',
@@ -39,6 +54,9 @@ class ConvertCaseTest extends UnitTestCase {
     $this->assertEquals('fOO BAR', $plugin->tamper('FOO BAR'));
   }
 
+  /**
+   *
+   */
   public function testUpperCaseWords() {
     $config = [
       ConvertCase::SETTING_OPERATION => 'ucwords',

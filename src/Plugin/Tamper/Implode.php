@@ -70,4 +70,5 @@ class Implode extends TamperBase {
     // Convert to an array so that the plugin can handle this.
     return $this->tamperMultipleValues([$data]);
   }
+
 }

@@ -49,4 +49,5 @@ class Tamper extends Plugin {
    * @var \Drupal\Core\Annotation\Translation
    */
   public $category = '';
+
 }

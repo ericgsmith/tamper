@@ -29,7 +29,6 @@ class ConvertCase extends TamperBase {
     return $config;
   }
 
-
   /**
    * {@inheritdoc}
    */
