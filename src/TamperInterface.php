@@ -2,13 +2,12 @@
 
 namespace Drupal\tamper;
 
-use Drupal\Component\Plugin\ConfigurablePluginInterface;
 use Drupal\Component\Plugin\PluginInspectionInterface;
 
 /**
  * Interface definition for tamper plugins.
  */
-interface TamperInterface extends PluginInspectionInterface, ConfigurablePluginInterface {
+interface TamperInterface extends PluginInspectionInterface {
 
   /**
    * Tamper data.
@@ -22,5 +21,29 @@ interface TamperInterface extends PluginInspectionInterface, ConfigurablePluginI
    *   The tampered data.
    */
   public function tamper($data);
+
+  /**
+   * Returns the unique ID representing the tamper.
+   *
+   * @return string
+   *   The image effect ID.
+   */
+  public function getUuid();
+
+  /**
+   * Returns the weight of the tamper.
+   *
+   * @return int
+   *   Weight of the tamper plugin.
+   */
+  public function getWeight();
+
+  /**
+   * Sets the weight for this tamper.
+   *
+   * @param int $weight
+   *   Weight of the tamper plugin.
+   */
+  public function setWeight($weight);
 
 }

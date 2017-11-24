@@ -11,18 +11,46 @@ use Drupal\Core\Plugin\PluginBase;
 abstract class TamperBase extends PluginBase implements TamperInterface {
 
   /**
-   * {@inheritdoc}
+   * The tamper ID.
+   *
+   * @var string
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->setConfiguration($configuration);
-  }
+  protected $uuid;
+
+  /**
+   * The weight of tamper instance.
+   *
+   * @var int|string
+   */
+  protected $weight = '';
 
   /**
    * {@inheritdoc}
    */
   public function tamper($data) {
     return is_array($data) ? $this->tamperMultipleValues($data) : $this->tamperSingleValue($data);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getUuid() {
+    return $this->uuid;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setWeight($weight) {
+    $this->weight = $weight;
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getWeight() {
+    return $this->weight;
   }
 
   /**
@@ -51,47 +79,6 @@ abstract class TamperBase extends PluginBase implements TamperInterface {
    */
   protected function tamperMultipleValues(array $data) {
     return array_map([$this, 'tamperSingleValue'], $data);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getConfiguration() {
-    return $this->configuration;
-  }
-
-  /**
-   * Get a particular configuration value.
-   *
-   * @param string $key
-   *   Key of the configuration.
-   *
-   * @return mixed
-   *   Setting value.
-   */
-  public function getSetting($key) {
-    return $this->configuration[$key];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setConfiguration(array $configuration) {
-    $this->configuration = NestedArray::mergeDeep($this->defaultConfiguration(), $configuration);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function defaultConfiguration() {
-    return [];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function calculateDependencies() {
-    return [];
   }
 
 }
