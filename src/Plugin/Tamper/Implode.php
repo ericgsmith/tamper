@@ -58,7 +58,7 @@ class Implode extends TamperBase {
   /**
    * {@inheritdoc}
    */
-  public function tamperMultipleValues($data) {
+  public function tamperMultipleValues(array $data) {
     $glue = str_replace(['%s', '%t', '%n'], [' ', "\t", "\n"], $this->getSetting(self::SETTING_GLUE));
     return implode($glue, $data);
   }
