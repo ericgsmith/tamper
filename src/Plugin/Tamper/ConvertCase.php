@@ -51,7 +51,6 @@ class ConvertCase extends ConfigurableTamperBase {
     $this->setConfiguration([self::SETTING_OPERATION => $form_state->getValue(self::SETTING_OPERATION)]);
   }
 
-
   /**
    * Get the case conversion options.
    *

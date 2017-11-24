@@ -2,7 +2,6 @@
 
 namespace Drupal\tamper;
 
-use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Plugin\PluginBase;
 
 /**
