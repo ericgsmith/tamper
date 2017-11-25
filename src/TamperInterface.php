@@ -2,38 +2,12 @@
 
 namespace Drupal\tamper;
 
-use Drupal\Component\Plugin\ConfigurablePluginInterface;
 use Drupal\Component\Plugin\PluginInspectionInterface;
-use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Interface definition for tamper plugins.
  */
-interface TamperInterface extends PluginInspectionInterface, ConfigurablePluginInterface {
-
-  /**
-   * Returns a form to configure settings for the tamper.
-   *
-   * @param array $form
-   *   The form where the settings form is being included in.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
-   *   The current state of the form.
-   *
-   * @return array
-   *   The form elements for the tamper settings.
-   */
-  public function settingsForm(array $form, FormStateInterface $form_state);
-
-  /**
-   * Returns a short summary for the current tamper settings.
-   *
-   * If an empty result is returned, a UI can still be provided to display
-   * a settings form in case the tamper has configurable settings.
-   *
-   * @return string[]
-   *   A short summary of the tamper settings.
-   */
-  public function settingsSummary();
+interface TamperInterface extends PluginInspectionInterface {
 
   /**
    * Tamper data.
@@ -47,5 +21,29 @@ interface TamperInterface extends PluginInspectionInterface, ConfigurablePluginI
    *   The tampered data.
    */
   public function tamper($data);
+
+  /**
+   * Returns the unique ID representing the tamper.
+   *
+   * @return string
+   *   The image effect ID.
+   */
+  public function getUuid();
+
+  /**
+   * Returns the weight of the tamper.
+   *
+   * @return int
+   *   Weight of the tamper plugin.
+   */
+  public function getWeight();
+
+  /**
+   * Sets the weight for this tamper.
+   *
+   * @param int $weight
+   *   Weight of the tamper plugin.
+   */
+  public function setWeight($weight);
 
 }

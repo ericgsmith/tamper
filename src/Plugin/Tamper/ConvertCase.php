@@ -3,8 +3,8 @@
 namespace Drupal\tamper\Plugin\Tamper;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\tamper\ConfigurableTamperBase;
 use Drupal\tamper\Exception\TamperException;
-use Drupal\tamper\TamperBase;
 
 /**
  * Plugin implementation for converting case.
@@ -16,7 +16,7 @@ use Drupal\tamper\TamperBase;
  *   category = "Text"
  * )
  */
-class ConvertCase extends TamperBase {
+class ConvertCase extends ConfigurableTamperBase {
 
   const SETTING_OPERATION = 'operation';
 
@@ -32,7 +32,7 @@ class ConvertCase extends TamperBase {
   /**
    * {@inheritdoc}
    */
-  public function settingsForm(array $form, FormStateInterface $form_state) {
+  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
     $form[self::SETTING_OPERATION] = [
       '#type' => 'select',
       '#title' => $this->t('How to convert case'),
@@ -46,13 +46,9 @@ class ConvertCase extends TamperBase {
   /**
    * {@inheritdoc}
    */
-  public function settingsSummary() {
-    $settings = [];
-    if ($this->getSetting(self::SETTING_OPERATION)) {
-      $options = $this->getOptions();
-      $settings[] = $this->t('Converting case using operation: @operation', ['@operation' => $options[$this->getSetting(self::SETTING_OPERATION)]]);
-    }
-    return $settings;
+  public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
+    parent::submitConfigurationForm($form, $form_state);
+    $this->setConfiguration([self::SETTING_OPERATION => $form_state->getValue(self::SETTING_OPERATION)]);
   }
 
   /**
