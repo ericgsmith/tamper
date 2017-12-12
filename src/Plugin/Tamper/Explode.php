@@ -73,7 +73,7 @@ class Explode extends ConfigurableTamperBase {
   /**
    * {@inheritdoc}
    */
-  public function tamperSingleValue($data) {
+  protected function tamperSingleValue($data) {
     $separator = str_replace(['%s', '%t', '%n'], [' ', "\t", "\n"], $this->getSetting(self::SETTING_SEPARATOR));
     $limit = is_numeric($this->getSetting(self::SETTING_LIMIT)) ? $this->getSetting(self::SETTING_LIMIT) : PHP_INT_MAX;
     return explode($separator, $data, $limit);

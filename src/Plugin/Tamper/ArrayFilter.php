@@ -19,14 +19,14 @@ class ArrayFilter extends TamperBase {
   /**
    * {@inheritdoc}
    */
-  public function tamperMultipleValues(array $data) {
+  protected function tamperMultipleValues(array $data) {
     return array_values(array_filter($data));
   }
 
   /**
    * {@inheritdoc}
    */
-  public function tamperSingleValue($data) {
+  protected function tamperSingleValue($data) {
     // Convert to an array so that the plugin can handle this.
     return $this->tamperMultipleValues([$data]);
   }

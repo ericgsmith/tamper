@@ -55,7 +55,7 @@ class Implode extends ConfigurableTamperBase {
   /**
    * {@inheritdoc}
    */
-  public function tamperMultipleValues(array $data) {
+  protected function tamperMultipleValues(array $data) {
     $glue = str_replace(['%s', '%t', '%n'], [' ', "\t", "\n"], $this->getSetting(self::SETTING_GLUE));
     return implode($glue, $data);
   }
@@ -63,7 +63,7 @@ class Implode extends ConfigurableTamperBase {
   /**
    * {@inheritdoc}
    */
-  public function tamperSingleValue($data) {
+  protected function tamperSingleValue($data) {
     // Convert to an array so that the plugin can handle this.
     return $this->tamperMultipleValues([$data]);
   }
