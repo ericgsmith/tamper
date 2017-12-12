@@ -11,15 +11,36 @@ use Drupal\Tests\UnitTestCase;
 class ImplodeTest extends UnitTestCase {
 
   /**
-   * Test imploding.
+   * @var \Drupal\tamper\Plugin\Tamper\Implode
    */
-  public function testImplode() {
+  protected $plugin;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp() {
     $config = [
       Implode::SETTING_GLUE => ',',
     ];
-    $plugin = new Implode($config, 'implode', []);
-    $this->assertEquals('foo,bar,baz', $plugin->tamper(['foo', 'bar', 'baz']));
-    $this->assertEquals('foo', $plugin->tamper('foo'));
+    $this->plugin = new Implode($config, 'implode', []);
+    parent::setUp();
   }
 
+  /**
+   * Test imploding.
+   */
+  public function testImplodeWithSingleValue() {
+    $original = 'foo';
+    $expected = 'foo';
+    $this->assertEquals($expected, $this->plugin->tamper($original));
+  }
+
+  /**
+   * Test imploding.
+   */
+  public function testImplodeWithMultipleValues() {
+    $original = ['foo', 'bar', 'baz'];
+    $expected = 'foo,bar,baz';
+    $this->assertEquals($expected, $this->plugin->tamper($original));
+  }
 }

@@ -13,22 +13,54 @@ class ExplodeTest extends UnitTestCase {
   /**
    * Test explode.
    */
-  public function testExplode() {
-    $config = [];
-    $plugin = new Explode($config, 'explode', []);
-    $this->assertArrayEquals(['foo', 'bar', 'baz', 'zip'], $plugin->tamper('foo,bar,baz,zip'));
+  public function testExplodeWithSingleValue() {
+    $original = 'foo,bar,baz,zip';
+    $expected = ['foo', 'bar', 'baz', 'zip'];
+    $this->assertArrayEquals($expected, $this->getPluginDefaultConfig()->tamper($original));
+  }
+
+  /**
+   * Test explode.
+   */
+  public function testExplodeWithMultipleValues() {
+    $original = ['foo,bar', 'baz,zip'];
+    $expected = [['foo', 'bar'], ['baz', 'zip']];
+    $this->assertArrayEquals($expected, $this->getPluginDefaultConfig()->tamper($original));
   }
 
   /**
    * Text explode with limit.
    */
-  public function testExplodeLimit() {
+  public function testExplodeWithSingleValueAndLimit() {
+    $original = 'foo,bar,baz,zip';
+    $expected = ['foo', 'bar,baz,zip'];
+    $this->assertArrayEquals($expected, $this->getPluginWithLimit()->tamper($original));
+  }
+
+  /**
+   * Text explode with limit.
+   */
+  public function testExplodeWithMultipleValuesAndLimit() {
+    $original = ['foo,bar,baz,zip', 'fizz,bang,boop'];
+    $expected = [['foo', 'bar,baz,zip'], ['fizz', 'bang,boop']];
+    $this->assertArrayEquals($expected, $this->getPluginWithLimit()->tamper($original));
+  }
+
+  /**
+   * @return \Drupal\tamper\Plugin\Tamper\Explode
+   */
+  protected function getPluginDefaultConfig() {
+    return new Explode([], 'explode', []);
+  }
+
+  /**
+   * @return \Drupal\tamper\Plugin\Tamper\Explode
+   */
+  protected function getPluginWithLimit() {
     $config = [
       Explode::SETTING_LIMIT => 2,
-      Explode::SETTING_SEPARATOR => '_',
     ];
-    $plugin = new Explode($config, 'explode', []);
-    $this->assertArrayEquals(['foo', 'bar_baz_zip'], $plugin->tamper('foo_bar_baz_zip'));
+    return new Explode($config, 'explode', []);
   }
 
 }
