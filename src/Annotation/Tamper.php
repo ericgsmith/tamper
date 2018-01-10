@@ -42,7 +42,7 @@ class Tamper extends Plugin {
   public $description;
 
   /**
-   * The category under which the field type should be listed in the UI.
+   * The category under which the tamper plugin should be listed in the UI.
    *
    * @var \Drupal\Core\Annotation\Translation
    *
