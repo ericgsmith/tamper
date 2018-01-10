@@ -2,7 +2,6 @@
 
 namespace Drupal\tamper;
 
-use Drupal\Component\Plugin\CategorizingPluginManagerInterface;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Plugin\DefaultPluginManager;
@@ -10,7 +9,7 @@ use Drupal\Core\Plugin\DefaultPluginManager;
 /**
  * Provides a Tamper plugin manager.
  */
-class TamperManager extends DefaultPluginManager implements CategorizingPluginManagerInterface {
+class TamperManager extends DefaultPluginManager implements TamperManagerInterface {
 
   /**
    * Constructs a TamperManager object.
