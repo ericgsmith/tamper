@@ -27,7 +27,7 @@ abstract class TamperBase extends PluginBase implements TamperInterface {
    * {@inheritdoc}
    */
   public function tamper($data) {
-    return is_array($data) ? $this->tamperMultipleValues($data) : $this->tamperSingleValue($data);
+    return is_scalar($data) ? $this->tamperSingleValue($data) : $this->tamperMultipleValues($data);
   }
 
   /**
